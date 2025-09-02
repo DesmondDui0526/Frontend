@@ -1,6 +1,7 @@
-<script setup>
+<!-- <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import FeedView from './views/FeedView.vue'
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import TheWelcome from './components/TheWelcome.vue'
   </header>
 
   <main>
+    <FeedView />
     <TheWelcome />
   </main>
 </template>
@@ -44,4 +46,12 @@ header {
     flex-wrap: wrap;
   }
 }
-</style>
+</style> -->
+
+<script setup>
+import FeedView from './views/FeedView.vue'
+</script>
+
+<template>
+  <FeedView />
+</template>
