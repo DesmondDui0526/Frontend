@@ -2,9 +2,9 @@
   <div class="w-full bg-gray-50 min-h-screen p-6">
 
     <!-- grid container -->
-    <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-      <div v-for="(item, i) in feed.items" :key="i"
-        class="break-inside-avoid p-4 rounded-lg shadow bg-white mb-6 cursor-pointer" @click="toggleDescription(i)">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div v-for="(item, i) in feed.items" :key="i" class="p-4 rounded-lg shadow bg-white cursor-pointer"
+        @click="toggleDescription(i)">
 
         <!-- title always visible -->
         <h2 class="text-black text-lg font-semibold">{{ item.title }}</h2>
