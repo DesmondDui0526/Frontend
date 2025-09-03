@@ -1,34 +1,30 @@
-import { reactive } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
 export const useFeedStore = defineStore('feed', () => {
-  const state = reactive({
-    items: [],
-    offset: 0,
-    limit: 15,
-    loading: false,
-  })
+  const items = ref([])
+  const offset = ref(0)
+  const limit = ref(15)
+  const loading = ref(false)
 
-  function fetchFeed() {
-    if (state.loading) return
-    state.loading = true
+  async function fetchFeed() {
+    if (loading.value) return
+    loading.value = true
 
-    axios
-      .get('https://api.popules.com/api/feed', {
-        params: { offset: state.offset, limit: state.limit },
+    try {
+      const { data } = await axios.get('https://api.popules.com/api/feed', {
+        params: { offset: offset.value, limit: limit.value },
       })
-      .then((response) => {
-        state.items.push(...response.data)
-        state.offset += state.limit
-      })
-      .catch((error) => {
-        console.error('Error fetching feed:', error)
-      })
-      .finally(() => {
-        state.loading = false
-      })
+      // debugging for issue purpose
+      console.log('API Response:', data)
+      items.value.push(...data.data)
+      offset.value += limit.value
+    } catch (error) {
+      console.error('Error fetching feed:', error)
+    } finally {
+      loading.value = false
+    }
   }
-
-  return { ...state, fetchFeed }
+  return { items, offset, limit, loading, fetchFeed }
 })

@@ -48,10 +48,14 @@ header {
 }
 </style> -->
 
+<template>
+  <div class="bg-white">
+    <img src="./assets/img/popules_logo.png" class="sm:w-[10rem] w-[7rem] ml-3"
+      alt="Popules.com | Communities thrive where people connect">
+    <FeedView />
+  </div>
+</template>
+
 <script setup>
 import FeedView from './views/FeedView.vue'
 </script>
-
-<template>
-  <FeedView />
-</template>
